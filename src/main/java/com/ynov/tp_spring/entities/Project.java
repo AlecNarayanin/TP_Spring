@@ -9,6 +9,8 @@ import java.util.List;
 @Table(name = "users")
 public class Project implements Serializable {
 
+    public Project(){}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -36,7 +38,59 @@ public class Project implements Serializable {
     private List<User> abonnes;
 
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User getAuteur() {
+        return auteur;
+    }
+
+    public void setAuteur(User auteur) {
+        this.auteur = auteur;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Date getDateCloture() {
+        return dateCloture;
+    }
+
+    public void setDateCloture(Date dateCloture) {
+        this.dateCloture = dateCloture;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public List<User> getAbonnes() {
+        return abonnes;
+    }
+
+    public void setAbonnes(List<User> abonnes) {
+        this.abonnes = abonnes;
+    }
 }

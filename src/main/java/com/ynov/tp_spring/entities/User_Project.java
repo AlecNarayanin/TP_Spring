@@ -1,9 +1,12 @@
 package com.ynov.tp_spring.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class User_Project {
+public class User_Project implements Serializable {
+
+    public User_Project(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +26,45 @@ public class User_Project {
     @Column(name = "status")
     private Status status;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
 
     public enum Type {
