@@ -9,30 +9,27 @@ import java.util.List;
 @Table(name = "projects")
 public class Project implements Serializable {
 
-    public Project(){}
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
     @Column(name = "name")
     private String name;
-
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User auteur;
-
     @Column(name = "date_creation")
     private Date dateCreation;
-
     @Column(name = "date_cloture")
     private Date dateCloture;
-
     @Column(name = "keywords")
     private String keywords;
+    @OneToMany(mappedBy = "comment")
+    private List<Comment> comment;
 
 
+    public Project() {
+    }
 
     public Integer getId() {
         return id;

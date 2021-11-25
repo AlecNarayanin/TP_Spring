@@ -7,15 +7,18 @@ import java.io.Serializable;
 @Table(name = "comments")
 public class Comment implements Serializable {
 
-    public Comment(){}
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
     @Column(name = "contenu")
     private String contenu;
+    @ManyToOne
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
+
+    public Comment() {
+    }
 
     public Integer getId() {
         return id;
@@ -33,7 +36,5 @@ public class Comment implements Serializable {
         this.contenu = contenu;
     }
 
-//    @ManyToMany
-//    @JoinTable(name="likes_comment", @JoinColumn(name = "comment_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-//    private List<>
+
 }
