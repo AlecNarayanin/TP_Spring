@@ -5,31 +5,27 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User implements Serializable {
-
-    public User(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
     @Column(name = "email")
     private String email;
-
     @Column(name = "firstname")
     private String firstname;
-
     @Column(name = "lastname")
     private String lastname;
-
     @Enumerated()
     @Column(name = "role")
     private Role role;
-
     @OneToMany(mappedBy = "auteur")
     private List<Project> projects;
+
+    public User() {
+    }
 
     public Integer getId() {
         return id;
