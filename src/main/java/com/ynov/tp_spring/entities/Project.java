@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "projects")
 public class Project implements Serializable {
 
     public Project(){}
@@ -20,8 +20,7 @@ public class Project implements Serializable {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false)
-    @Column(name = "auteur")
+    @JoinColumn(name="user_id", nullable=false)
     private User auteur;
 
     @Column(name = "date_creation")
@@ -33,9 +32,6 @@ public class Project implements Serializable {
     @Column(name = "keywords")
     private String keywords;
 
-    @OneToMany(mappedBy = "id")
-    @Column(name = "abonnes")
-    private List<User> abonnes;
 
 
     public Integer getId() {
@@ -86,11 +82,4 @@ public class Project implements Serializable {
         this.keywords = keywords;
     }
 
-    public List<User> getAbonnes() {
-        return abonnes;
-    }
-
-    public void setAbonnes(List<User> abonnes) {
-        this.abonnes = abonnes;
-    }
 }
