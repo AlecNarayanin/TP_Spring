@@ -1,5 +1,7 @@
 package com.ynov.tp_spring.entities;
 
+import com.ynov.tp_spring.dto.ProjectUpsertDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,6 +33,10 @@ public class Project implements Serializable {
     private List<User_Project> userProject = new ArrayList<User_Project>();
 
     public Project() {
+    }
+
+    public Project(ProjectUpsertDTO dto){
+        setFieldsWithDto(dto);
     }
 
     public Integer getId() {
@@ -79,6 +85,21 @@ public class Project implements Serializable {
 
     public void setKeywords(String keywords) {
         this.keywords = keywords;
+    }
+
+
+    public Project mapUpsertDto(ProjectUpsertDTO dto){
+        return  setFieldsWithDto(dto);
+    }
+
+
+    private Project setFieldsWithDto(ProjectUpsertDTO dto){
+        this.setId(dto.getId());
+        this.setName(dto.getName());
+        this.setDateCloture(dto.getDateCloture());
+        this.setDateCreation(dto.getDateCreation());
+        this.setKeywords(dto.getKeywords());
+        return this;
     }
 
 }
