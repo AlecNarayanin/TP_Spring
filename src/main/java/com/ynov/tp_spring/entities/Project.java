@@ -1,5 +1,7 @@
 package com.ynov.tp_spring.entities;
 
+import com.ynov.tp_spring.dto.ProjectUpsertDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,31 +16,26 @@ public class Project implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
     @Column(name = "name")
     private String name;
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User auteur;
-
     @Column(name = "date_creation")
     private Date dateCreation;
-
     @Column(name = "date_cloture")
     private Date dateCloture;
-
     @Column(name = "keywords")
     private String keywords;
-
+    @OneToMany(mappedBy = "project")
+    private List<Comment> comment;
     @OneToMany(mappedBy = "project")
     private List<User_Project> userProject = new ArrayList<User_Project>();
 
-    @OneToMany(mappedBy = "project")
-    private List<Request> requests;
-
     public Project() {
     }
+
+
 
     public Integer getId() {
         return id;
@@ -88,22 +85,19 @@ public class Project implements Serializable {
         this.keywords = keywords;
     }
 
-    public boolean addRequest(Request request) {
-        if(this.requests.indexOf(request) == -1) {
-            this.requests.add(request);
-            return true;
-        }
-        return false;
+
+    public Project mapUpsertDto(ProjectUpsertDTO dto){
+        return  setFieldsWithDto(dto);
     }
 
-    public boolean deleteRequest(Integer requestId) {
-        for (Request request : this.requests) {
-            if(request.getId().equals(requestId)) {
-                this.requests.remove(request);
-                return true;
-            }
-        }
-        return false;
+
+    private Project setFieldsWithDto(ProjectUpsertDTO dto){
+        this.setId(dto.getId());
+        this.setName(dto.getName());
+        this.setDateCloture(dto.getDateCloture());
+        this.setDateCreation(dto.getDateCreation());
+        this.setKeywords(dto.getKeywords());
+        return this;
     }
 
 }
