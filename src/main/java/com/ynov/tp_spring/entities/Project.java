@@ -24,7 +24,7 @@ public class Project implements Serializable {
     private Date dateCloture;
     @Column(name = "keywords")
     private String keywords;
-    @OneToMany(mappedBy = "comment")
+    @OneToMany(mappedBy = "project")
     private List<Comment> comment;
 
 
