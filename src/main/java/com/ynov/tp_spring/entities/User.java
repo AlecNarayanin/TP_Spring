@@ -27,7 +27,8 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<User_Project> user_project = new ArrayList<User_Project>();
 
-    @ManyToMany(name = "likes", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
+    @ManyToMany
+    @JoinTable(name = "likes", joinColumns= @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
     private List<Comment> comments = new ArrayList<Comment>();
 
     public User() {

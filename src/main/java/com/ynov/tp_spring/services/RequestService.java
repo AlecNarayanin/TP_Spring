@@ -42,7 +42,7 @@ public class RequestService {
         return requestRepository.findAll();
     }
 
-    public List<Request> getAllByProject(Integer projectId) {
+    /*public List<Request> getAllByProject(Integer projectId) {
         return requestRepository.findByProjectId(projectId);
-    }
+    }*/
 }
