@@ -6,24 +6,22 @@ import java.io.Serializable;
 @Entity
 public class User_Project implements Serializable {
 
-    public User_Project(){}
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
     @ManyToOne(fetch = FetchType.LAZY)
     private Project project;
     @Enumerated()
     @Column(name = "type")
     private Type type;
-
     @Enumerated()
     @Column(name = "status")
     private Status status;
+
+    public User_Project() {
+    }
 
     public Long getId() {
         return id;

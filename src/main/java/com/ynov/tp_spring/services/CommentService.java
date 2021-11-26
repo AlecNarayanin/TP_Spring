@@ -24,8 +24,8 @@ public class CommentService {
         commentRepository.deleteById(id);
     }
 
-    public List<Comment> getAllByProject(Integer project_id) {
-        return commentRepository.findByProjectId(project_id);
+    public List<Comment> getAllByProject(Integer projectId) {
+        return commentRepository.findByProjectId(projectId);
     }
 
 

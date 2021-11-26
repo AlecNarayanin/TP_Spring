@@ -21,13 +21,19 @@ public class RequestService {
         return requestRepository.getById(id);
     }
 
-    public void delete(Integer id) {
+    public boolean delete(Integer id) {
         if (requestRepository.existsById(id)) {
             requestRepository.deleteById(id);
+            return true;
         }
+        return false;
     }
 
     public List<Request> getAll() {
         return requestRepository.findAll();
+    }
+
+    public List<Request> getAllByProject(Integer projectId) {
+        return requestRepository.findByProjectId(projectId);
     }
 }
