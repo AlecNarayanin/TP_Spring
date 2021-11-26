@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,5 +50,10 @@ public class CommentService {
         if(comment != null){
             commentRepository.save(comment.removeUserById(userId));
         }
+    }
+
+    public List<User> getUsersWhoLikeComment(Integer commentId){
+        Comment comment = this.getById(commentId);
+        return comment != null ? comment.getUsers() : new ArrayList<User>();
     }
 }

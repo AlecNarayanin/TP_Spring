@@ -1,14 +1,14 @@
 package com.ynov.tp_spring.controllers;
 
 
+import com.ynov.tp_spring.entities.User;
 import com.ynov.tp_spring.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class CommentController {
@@ -39,6 +39,11 @@ public class CommentController {
         }catch (Exception e){
             return new ResponseEntity(e.getMessage() , HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping(path = "comment/{id}/likes")
+    public List<User> getUserLikesCommentByCommentId(@PathVariable("id") Integer commentId){
+        return commentService.getUsersWhoLikeComment(commentId);
     }
 
 }
