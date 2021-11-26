@@ -26,6 +26,7 @@ public class UserService {
 
     public void delete(Integer id) {
         if (userRepository.existsById(id)) {
+
             userRepository.deleteById(id);
         }
     }
