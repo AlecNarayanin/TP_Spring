@@ -35,9 +35,7 @@ public class Project implements Serializable {
     public Project() {
     }
 
-    public Project(ProjectUpsertDTO dto){
-        setFieldsWithDto(dto);
-    }
+
 
     public Integer getId() {
         return id;

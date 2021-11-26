@@ -28,7 +28,7 @@ public class ProjectController {
         User usr = userService.getById(projectDTO.getAuteurId());
 
         Project project = projectDTO.getId() == null ?
-                new Project(projectDTO) : projectService.getById(projectDTO.getId()).mapUpsertDto(projectDTO);
+                new Project().mapUpsertDto(projectDTO) : projectService.getById(projectDTO.getId()).mapUpsertDto(projectDTO);
 
         project.setAuteur(usr);
         return projectService.upsert(project);
