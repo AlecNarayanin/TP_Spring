@@ -23,15 +23,15 @@ public class ProjectController {
     }
 
     @PutMapping(path = "/project/")
-    public Project upsertProject(@RequestBody ProjectUpsertDTO projectDTO){
-
-        User usr = userService.getById(projectDTO.getAuteurId());
+    public Integer upsertProject(@RequestBody ProjectUpsertDTO projectDTO){
 
         Project project = projectDTO.getId() == null ?
                 new Project().mapUpsertDto(projectDTO) : projectService.getById(projectDTO.getId()).mapUpsertDto(projectDTO);
 
-        project.setAuteur(usr);
-        return projectService.upsert(project);
+        User usr = userService.getById(projectDTO.getAuteurId());
+        if(usr != null) project.setAuteur(usr);
+
+        return projectService.upsert(project).getId();
     }
 
     @DeleteMapping(path = "/project/{id}")
