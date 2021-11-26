@@ -14,9 +14,10 @@ public class RequestService {
     private RequestRepository requestRepository;
 
     public boolean handleRequestStatus(Integer id, Request.RequestStatus status) {
-        Request request = requestRepository.getById(id);
-        if (request != null) {
+        if (requestRepository.existsById(id)) {
+            Request request = requestRepository.getById(id);
             request.setStatus(status);
+            upsert(request);
             return true;
         }
         return false;

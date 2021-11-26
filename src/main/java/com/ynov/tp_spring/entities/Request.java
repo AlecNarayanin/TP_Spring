@@ -10,10 +10,14 @@ public class Request implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "request")
-    private String request;
+    @Column(name = "content")
+    private String content;
     @Column(name = "status")
     private RequestStatus status;
+    @ManyToOne
+    @JoinColumn(name="project_id", nullable=false)
+    private Project project;
+
 
     public Request() {
     }
@@ -26,12 +30,12 @@ public class Request implements Serializable {
         this.id = id;
     }
 
-    public String getRequest() {
-        return request;
+    public String getContent() {
+        return content;
     }
 
-    public void setRequest(String request) {
-        this.request = request;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public RequestStatus getStatus() {
