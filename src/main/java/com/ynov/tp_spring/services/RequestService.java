@@ -13,6 +13,15 @@ public class RequestService {
     @Autowired
     private RequestRepository requestRepository;
 
+    public boolean handleRequestStatus(Integer id, Request.RequestStatus status) {
+        Request request = requestRepository.getById(id);
+        if (request != null) {
+            request.setStatus(status);
+            return true;
+        }
+        return false;
+    }
+
     public Request upsert(Request request) {
         return requestRepository.save(request);
     }

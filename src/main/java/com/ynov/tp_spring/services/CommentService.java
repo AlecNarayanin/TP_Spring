@@ -28,5 +28,7 @@ public class CommentService {
         return commentRepository.findByProjectId(projectId);
     }
 
-
+    public Comment getById(Integer id) {
+        return commentRepository.getById(id);
+    }
 }

@@ -10,11 +10,13 @@ public class Request implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
     @Column(name = "request")
     private String request;
     @Column(name = "status")
     private RequestStatus status;
+
+    public Request() {
+    }
 
     public Integer getId() {
         return id;
@@ -30,5 +32,17 @@ public class Request implements Serializable {
 
     public void setRequest(String request) {
         this.request = request;
+    }
+
+    public RequestStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(RequestStatus status) {
+        this.status = status;
+    }
+
+    public enum RequestStatus {
+        PENDING, ACCEPTED, DECLINED
     }
 }

@@ -2,6 +2,8 @@ package com.ynov.tp_spring.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "comments")
@@ -16,6 +18,9 @@ public class Comment implements Serializable {
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+
+    @ManyToMany(mappedBy = "comments")
+    private List<User> users = new ArrayList<User>();
 
     public Comment() {
     }
