@@ -18,7 +18,7 @@ public class CommentController {
 
 
 
-    @PostMapping(path="user/{userId}/comment/{commentId}")
+    @PostMapping(path="user/{userId}/comment/{commentId}/likes")
     public ResponseEntity addlike(@PathVariable("userId") Integer userId,
                                   @PathVariable("commentId") Integer commentId) {
         try{
@@ -31,7 +31,7 @@ public class CommentController {
     }
 
 
-    @DeleteMapping(path="user/{userId}/comment/{commentId}")
+    @DeleteMapping(path="user/{userId}/comment/{commentId}/likes")
     public ResponseEntity  removeLike(@PathVariable("userId") Integer userId, @PathVariable("commentId") Integer commentId){
         try{
             commentService.removeLike(commentId,userId);
