@@ -14,6 +14,9 @@ public class Request implements Serializable {
     private String request;
     @Column(name = "status")
     private RequestStatus status;
+    @ManyToOne
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
 
     public Request() {
     }

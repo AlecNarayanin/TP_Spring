@@ -16,7 +16,7 @@ public class UserController {
     private UserService userService;
 
     @Operation(summary = "Récupération d'un utilisateur")
-    @RequestMapping(path = "/user", method = RequestMethod.GET)
+    @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
     public User getUser(@RequestParam(value = "id") Integer id) {
         return userService.getById(id);
     }
@@ -27,7 +27,6 @@ public class UserController {
         return userService.getAll();
     }
 
-    //ROLE
     @Valid
     @Operation(summary = "Création ou mise à jour d'un utilisateur")
     @RequestMapping(path = "/user", method = RequestMethod.PUT)
@@ -35,9 +34,8 @@ public class UserController {
         return userService.upsert(user);
     }
 
-    //ROLE
     @Operation(summary = "Suppression d'un utilisateur à partir de son identifiant")
-    @RequestMapping(path = "/user", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/user/{id}", method = RequestMethod.DELETE)
     public void delete(@RequestParam(value = "id") Integer id) {
         userService.delete(id);
     }

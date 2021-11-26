@@ -14,8 +14,7 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
-
+    
     public User upsert(User user) {
         return userRepository.save(user);
     }
@@ -26,7 +25,6 @@ public class UserService {
 
     public void delete(Integer id) {
         if (userRepository.existsById(id)) {
-
             userRepository.deleteById(id);
         }
     }

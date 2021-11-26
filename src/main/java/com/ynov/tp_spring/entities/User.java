@@ -1,6 +1,7 @@
 package com.ynov.tp_spring.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +15,13 @@ public class User implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Column(name = "email")
+    @NotNull
     private String email;
     @Column(name = "firstname")
+    @NotNull
     private String firstname;
     @Column(name = "lastname")
+    @NotNull
     private String lastname;
     @Enumerated()
     @Column(name = "role")
@@ -28,7 +32,7 @@ public class User implements Serializable {
     private List<User_Project> user_project = new ArrayList<User_Project>();
 
     @ManyToMany
-    @JoinTable(name = "likes", joinColumns= @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
+    @JoinTable(name = "likes", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
     private List<Comment> comments = new ArrayList<Comment>();
 
     public User() {
