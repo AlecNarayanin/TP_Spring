@@ -2,6 +2,7 @@ package com.ynov.tp_spring.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,11 @@ public class User implements Serializable {
     private Role role;
     @OneToMany(mappedBy = "auteur")
     private List<Project> projects;
+    @OneToMany(mappedBy = "user")
+    private List<User_Project> user_project = new ArrayList<User_Project>();
+
+    @ManyToMany(name = "likes", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
+    private List<Comment> comments = new ArrayList<Comment>();
 
     public User() {
     }

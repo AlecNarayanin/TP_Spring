@@ -2,6 +2,7 @@ package com.ynov.tp_spring.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,8 @@ public class Project implements Serializable {
     private String keywords;
     @OneToMany(mappedBy = "project")
     private List<Comment> comment;
-
+    @OneToMany(mappedBy = "project")
+    private List<User_Project> userProject = new ArrayList<User_Project>();
 
     public Project() {
     }

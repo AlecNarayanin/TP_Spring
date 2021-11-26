@@ -17,7 +17,6 @@ public class User_Project implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Project project;
-
     @Enumerated()
     @Column(name = "type")
     private Type type;
