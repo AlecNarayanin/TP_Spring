@@ -30,7 +30,7 @@ public class ProjectController {
     }
 
     @PutMapping(path = "/project/")
-    public Project upsertProject(@RequestBody ProjectUpsertDTO projectDTO){
+    public Integer upsertProject(@RequestBody ProjectUpsertDTO projectDTO){
 
         Project project = projectDTO.getId() == null ?
                 new Project().mapUpsertDto(projectDTO) : projectService.getProjectById(projectDTO.getId()).mapUpsertDto(projectDTO);
@@ -38,7 +38,7 @@ public class ProjectController {
         User user = userService.getById(projectDTO.getAuteurId());
         if(user != null) project.setAuteur(user);
 
-        return projectService.upsert(project);
+        return projectService.upsert(project).getId();
     }
 
     @DeleteMapping(path = "/project/{id}")
