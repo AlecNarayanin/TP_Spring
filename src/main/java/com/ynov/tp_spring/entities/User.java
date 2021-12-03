@@ -1,5 +1,7 @@
 package com.ynov.tp_spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -26,6 +28,7 @@ public class User implements Serializable {
     @Enumerated()
     @Column(name = "role")
     private Role role;
+    @JsonIgnore
     @OneToMany(mappedBy = "auteur")
     private List<Project> projects;
     @OneToMany(mappedBy = "user")

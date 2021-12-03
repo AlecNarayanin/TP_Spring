@@ -1,5 +1,6 @@
 package com.ynov.tp_spring.controllers;
 
+import com.ynov.tp_spring.dto.UserUpsertDTO;
 import com.ynov.tp_spring.entities.User;
 import com.ynov.tp_spring.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,27 +17,33 @@ public class UserController {
     private UserService userService;
 
     @Operation(summary = "Récupération d'un utilisateur")
-    @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
-    public User getUser(@RequestParam(value = "id") Integer id) {
+    @GetMapping(path = "/user/{id}")
+    public User getUser(@PathVariable("id") Integer id) {
         return userService.getById(id);
     }
 
     @Operation(summary = "Récupération de tous les utilisateurs")
-    @RequestMapping(path = "/users/all", method = RequestMethod.GET)
+    @GetMapping(path = "/users/all")
     public List<User> getUsers() {
         return userService.getAll();
     }
 
     @Valid
     @Operation(summary = "Création ou mise à jour d'un utilisateur")
-    @RequestMapping(path = "/user", method = RequestMethod.PUT)
-    public User addOrUpdateUser(@RequestBody User user) {
+    @PutMapping(path = "/user")
+    public User upsertUser(@RequestBody UserUpsertDTO userDTO) {
+        User user = new User();
+        user.setId(userDTO.getId());
+        user.setEmail(userDTO.getEmail());
+        user.setFirstname(userDTO.getFirstname());
+        user.setLastname(userDTO.getLastname());
+        user.setRole(userDTO.getRole());
         return userService.upsert(user);
     }
 
     @Operation(summary = "Suppression d'un utilisateur à partir de son identifiant")
-    @RequestMapping(path = "/user/{id}", method = RequestMethod.DELETE)
-    public void delete(@RequestParam(value = "id") Integer id) {
-        userService.delete(id);
+    @DeleteMapping(path = "/user/{id}")
+    public void deleteUser(@PathVariable("id") Integer id) {
+        userService.deleteUser(id);
     }
 }
