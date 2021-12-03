@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public User getById(Integer id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id).orElse(null);
     }
 
     public void deleteUser(Integer id) {
