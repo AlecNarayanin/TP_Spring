@@ -31,6 +31,8 @@ public class Project implements Serializable {
     private List<Comment> comment;
     @OneToMany(mappedBy = "project")
     private List<User_Project> userProject = new ArrayList<User_Project>();
+    @OneToMany(mappedBy = "project")
+    private List<Request> requests;
 
     public Project() {
     }
@@ -85,11 +87,27 @@ public class Project implements Serializable {
         this.keywords = keywords;
     }
 
+    public boolean addRequest(Request request) {
+        if(this.requests.indexOf(request) == -1) {
+            this.requests.add(request);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteRequest(Integer requestId) {
+        for (Request request : this.requests) {
+            if(request.getId().equals(requestId)) {
+                this.requests.remove(request);
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Project mapUpsertDto(ProjectUpsertDTO dto){
         return  setFieldsWithDto(dto);
     }
-
 
     private Project setFieldsWithDto(ProjectUpsertDTO dto){
         this.setId(dto.getId());

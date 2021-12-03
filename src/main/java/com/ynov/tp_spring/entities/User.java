@@ -26,12 +26,38 @@ public class User implements Serializable {
     private List<Project> projects;
     @OneToMany(mappedBy = "user")
     private List<User_Project> user_project = new ArrayList<User_Project>();
+    @OneToMany(mappedBy = "user")
+    private List<Request> requests;
 
     @ManyToMany
     @JoinTable(name = "likes", joinColumns= @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
     private List<Comment> comments = new ArrayList<Comment>();
 
     public User() {
+    }
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+
+    public List<User_Project> getUser_project() {
+        return user_project;
+    }
+
+    public void setUser_project(List<User_Project> user_project) {
+        this.user_project = user_project;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public Integer getId() {
