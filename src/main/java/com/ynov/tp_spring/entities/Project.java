@@ -28,16 +28,15 @@ public class Project implements Serializable {
     @Column(name = "keywords")
     private String keywords;
     @OneToMany(mappedBy = "project")
-    private List<Comment> comment;
+    private List<Comment> comments;
     @OneToMany(mappedBy = "project")
+
     private List<User_Project> userProject = new ArrayList<User_Project>();
     @OneToMany(mappedBy = "project")
     private List<Request> requests;
 
     public Project() {
     }
-
-
 
     public Integer getId() {
         return id;
@@ -105,8 +104,8 @@ public class Project implements Serializable {
         return false;
     }
 
-    public Project mapUpsertDto(ProjectUpsertDTO dto){
-        return  setFieldsWithDto(dto);
+    public Project mapUpsertDto(ProjectUpsertDTO dto) {
+        return setFieldsWithDto(dto);
     }
 
     private Project setFieldsWithDto(ProjectUpsertDTO dto){
